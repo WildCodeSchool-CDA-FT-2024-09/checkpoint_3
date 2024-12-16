@@ -2,8 +2,11 @@ import Grid from "@mui/material/Grid2";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+//import useAddCountryMutation from "../generated/graphql-types";
 
 export default function CountriesList() {
+  //const { loading, error, data } = useAddCountryMutation();
+
   return (
     <Box sx={{ flexGrow: 1, padding: 2 }}>
       <Grid container spacing={2}>
