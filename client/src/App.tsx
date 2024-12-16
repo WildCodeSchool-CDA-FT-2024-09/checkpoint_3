@@ -1,25 +1,22 @@
 import "./App.css";
 
-import {
-  useContinentsQuery,
-  useCountriesQuery,
-} from "../generated/graphql-types";
+import { useCountriesQuery } from "../generated/graphql-types";
+import { useNavigate } from "react-router-dom";
 
 function App() {
-  const { data: continents } = useContinentsQuery();
   const { data: countries } = useCountriesQuery();
 
+  const navigate = useNavigate();
   return (
     <>
-      <h1>Hello</h1>
-      {continents?.continents.map((continent) => (
-        <p>{continent.name}</p>
-      ))}
+      <h1>Countries</h1>
       {countries?.countries.map((country) => (
-        <p>
-          {country.name}
-          {country.emoji}
-        </p>
+        <button
+          key={country.id}
+          onClick={() => navigate(`/country/${country.id}`)}
+        >
+          {`${country.name} ${country.emoji}`}
+        </button>
       ))}
     </>
   );
