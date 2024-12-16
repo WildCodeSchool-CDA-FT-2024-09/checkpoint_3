@@ -13,25 +13,32 @@ const CountriesList: React.FC = () => {
   return (
     <Container>
       <Typography variant="h4" gutterBottom>
-        Countries List
+        Liste des Pays
       </Typography>
       <Grid2 container spacing={2}>
         {data?.countries.map((country) => (
-          <Grid2 key={country.id}>
+          <Grid2 size={{ xs: 12, sm: 6, md: 4 }} key={country.id}>
             <Box
               sx={{
                 border: "1px solid #ccc",
                 padding: 2,
                 borderRadius: 2,
                 display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "flex-start",
+                height: "100%",
               }}
             >
-              <Typography>{country.name}</Typography>
-              <Typography>{country.emoji}</Typography>
-              <Link to={`/country/${country.code}`} style={{ textDecoration: "none" }}>
-                <Typography color="primary">View Details</Typography>
+              <Typography variant="h6">{country.name}</Typography>
+              <Typography variant="body1">{country.emoji}</Typography>
+              <Link
+                to={`/country/${country.code}`}
+                style={{ textDecoration: "none" }}
+              >
+                <Typography color="primary" variant="body1">
+                  Détails
+                </Typography>
               </Link>
             </Box>
           </Grid2>

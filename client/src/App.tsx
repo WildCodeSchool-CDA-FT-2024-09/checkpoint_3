@@ -1,15 +1,13 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import CountryDetails from "./components/CountryDetails";
-import Home from "./pages/Home";
+import { Outlet } from "react-router-dom";
 const App: React.FC = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/country/:code" element={<CountryDetails />} />
-      </Routes>
-    </Router>
+    <>
+      <header>
+        <h1>Mes voyages</h1>
+      </header>
+      <Outlet />
+    </>
   );
 };
 
