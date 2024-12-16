@@ -1,22 +1,8 @@
-
-import { useQuery } from "@apollo/client";
-import { useGetCountriesQuery } from "../types/graphql";
-import { gql } from "@apollo/client";
-
-export const GET_COUNTRIES = gql`
-  query GetCountries {
-    countries {
-      id
-      code
-      name
-      emoji
-    }
-  }
-`;
+import { useCountriesQuery } from "../types/graphql";
+import { Link } from "react-router-dom";
 
 function Country() {
-  // const { data, loading, error } = useGetCountriesQuery();
-  const { data, loading, error } = useQuery(GET_COUNTRIES);
+  const { data, loading, error } = useCountriesQuery();
 
   console.log(data);
 
@@ -29,12 +15,17 @@ function Country() {
   console.log(countries);
   return (
     <div>
-      <h1>Country</h1>
-      <ul>
-        {countries?.map((country) => (
-          <li key={country.code}>{country.name}</li>
-        ))}
-      </ul>
+      <h1>Countries</h1>
+      {countries?.map((country) => (
+        <div key={country.id}>
+          <Link to={`/country/${country.code}`}>
+            <h1>{country.name}</h1>
+          </Link>
+
+          <p>{country.emoji}</p>
+          <p>{country.code}</p>
+        </div>
+      ))}
     </div>
   );
 }

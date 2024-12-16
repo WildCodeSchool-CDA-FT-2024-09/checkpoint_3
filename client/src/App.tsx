@@ -1,12 +1,22 @@
-import { Outlet } from 'react-router-dom'; 
-import './App.css';
+import { Outlet } from "react-router-dom";
+import "./App.css";
+import { useQuery, gql } from "@apollo/client";
 
-import { useGetCountriesQuery } from './types/graphql';
-
-  
+const GET_COUNTRIES = gql`
+  query Countries {
+    countries {
+      id
+      code
+      name
+      emoji
+    }
+  }
+`;
 
 function App() {
-  const { data, loading, error } = useGetCountriesQuery();
+  const { data, loading, error } = useQuery(GET_COUNTRIES);
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
   console.log(data);
   return (
     <div>

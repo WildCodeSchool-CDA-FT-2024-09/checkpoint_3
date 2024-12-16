@@ -6,6 +6,7 @@ import connection from "./services/connection.ts";
 import App from "./App.tsx";
 import "./index.css";
 import Country from "./pages/Country.tsx";
+import DetailCountry from "./pages/DetailCountry.tsx";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,11 @@ const router = createBrowserRouter([
         path: "country",
         element: <Country />,
       },
+      {
+        index: true,
+        path: "country/:code",
+        element: <DetailCountry />,
+      }
     ],
   },
 ]);
