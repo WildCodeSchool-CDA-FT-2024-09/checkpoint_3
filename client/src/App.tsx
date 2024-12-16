@@ -12,7 +12,7 @@ function App() {
       <Container maxWidth="lg" sx={{ py: 4 }}>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/country/:id" element={<CountryDetailsPage />} />
+          <Route path="/country/:code" element={<CountryDetailsPage />} />
           <Route path="/add" element={<AddCountryPage />} />
         </Routes>
       </Container>
