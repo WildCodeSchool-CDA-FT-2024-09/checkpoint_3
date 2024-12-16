@@ -1,0 +1,16 @@
+div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+}
+
+.emoji {
+  font-size: 100px;
+}
+h1,
+p {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
