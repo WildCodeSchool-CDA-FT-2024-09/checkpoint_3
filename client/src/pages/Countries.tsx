@@ -1,3 +1,4 @@
+import AddCountry from "../components/addCountry";
 import CountryCard from "../components/CountryCard";
 import { useCountriesQuery } from "../generated/graphql-types";
 import "./CountriesPage.css";
@@ -11,6 +12,8 @@ export default function Countries() {
   console.info(data);
 
   return (
+    <> 
+    <AddCountry/>
     <div className="container">
       {data?.countries.map((c) => (
         <Link to={`/country/${c.name}`} key={c.name}>
@@ -18,5 +21,6 @@ export default function Countries() {
         </Link>
       ))}
     </div>
+    </>
   );
 }

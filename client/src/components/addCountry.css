@@ -1,0 +1,32 @@
+.sectionAdd{
+  display: flex;
+  justify-content: center;
+}
+.containerAddForm{
+  display: flex;
+  align-items: center;
+  background-color: rgb(231, 227, 227);
+  border-radius: 5px;
+  margin-bottom: 4rem;
+  max-width: 60rem;
+  gap: 4rem;
+  height: 5.5rem;
+  padding: 1rem
+}
+
+.fields{
+  display: flex;
+  flex-direction: column;
+  
+  input{
+    border-radius: 4px;
+    height: 2rem;
+  }
+}
+.buttonAdd{
+  background-color: rgb(250, 140, 158);
+
+  color: white;
+  width: 4rem;
+  height: 4rem;
+}
