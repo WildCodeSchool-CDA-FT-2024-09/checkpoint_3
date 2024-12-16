@@ -7,6 +7,7 @@ COPY package*.json ./
 RUN npm i
 
 COPY src ./src
+COPY .env ./.env
 COPY tsconfig.json ./tsconfig.json
 
 ARG NEXT_PUBLIC_GRAPHQL_API_URL
