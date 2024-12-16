@@ -1,8 +1,9 @@
 import { gql } from '@apollo/client';
 
-export const TEST_QUERY = gql`
-query Continents {
-  continents {
+export const GET_ALL_COUNTRIES = gql`
+query Countries {
+  countries {
+    emoji
     id
     name
   }
