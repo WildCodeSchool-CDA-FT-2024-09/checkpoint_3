@@ -2,6 +2,7 @@ import "./App.css";
 
 import {
   useAddCountryMutation,
+  useContinentsQuery,
   useCountriesQuery,
 } from "../generated/graphql-types";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +10,7 @@ import { useState } from "react";
 
 function App() {
   const { data: countries, refetch } = useCountriesQuery();
+  const { data: continents } = useContinentsQuery();
   const navigate = useNavigate();
 
   const [addCountry] = useAddCountryMutation();
@@ -17,6 +19,7 @@ function App() {
     name: "",
     code: "",
     emoji: "",
+    continent: 0,
   };
 
   const [formInputs, setFormInputs] = useState(emptyFormInputs);
@@ -30,6 +33,7 @@ function App() {
     ) {
       return;
     }
+
     try {
       await addCountry({
         variables: {
@@ -37,6 +41,9 @@ function App() {
             code: formInputs.code,
             name: formInputs.name,
             emoji: formInputs.emoji,
+            continent: formInputs.continent
+              ? { id: Number(formInputs.continent) }
+              : null,
           },
         },
       });
@@ -85,6 +92,18 @@ function App() {
           value={formInputs.code}
           placeholder="code"
         ></input>
+        <select
+          name="continent"
+          value={formInputs.continent}
+          onChange={handleInputChange}
+        >
+          <option value={0}>Continent (optional)</option>
+          {continents?.continents.map((continent) => (
+            <option key={continent.id} value={continent.id}>
+              {continent.name}
+            </option>
+          ))}
+        </select>
         <button type="submit">Add new country</button>
       </form>
     </>
