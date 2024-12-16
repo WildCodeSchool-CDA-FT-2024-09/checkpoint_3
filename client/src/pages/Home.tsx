@@ -35,7 +35,7 @@ function Home() {
           name: formData.name,
           code: formData.code,
           emoji: formData.emoji,
-          continent: continent,
+          continent: { id: continent },
         },
       },
       refetchQueries: [{ query: GET_COUNTRIES }],
