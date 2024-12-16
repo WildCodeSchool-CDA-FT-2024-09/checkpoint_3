@@ -1,27 +1,15 @@
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
-import { useQuery, gql } from "@apollo/client";
-
-const GET_COUTNRY = gql`
-  query Countries {
-    countries {
-      code
-      continent {
-        id
-        name
-      }
-      emoji
-      id
-      name
-    }
-  }
-`;
+import { useCountriesQuery } from "./generated/graphql-types";
 
 function App() {
-  const { data } = useQuery(GET_COUTNRY);
+  const { loading, error, data } = useCountriesQuery();
 
   console.log(data);
+
+  if (error) return <p>There id an Error</p>;
+  if (loading) return <p>Loading...</p>;
 
   return (
     <>
