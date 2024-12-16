@@ -1,13 +1,36 @@
 import { useRef } from "react";
+import {
+  NewCountryInput,
+  useAddCountryMutation,
+} from "../../generated/graphql-types";
 
 export default function NewCountryForm() {
-  const handleSubmit = (e) => {
+  const [addCountry, { data, loading, error }] = useAddCountryMutation();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     const name = nameRef.current?.value;
     const emoji = emojiRef.current?.value;
     const code = codeRef.current?.value;
 
-    // console.log({name, emoji, code});
+    if (name && emoji && code) {
+      const data: NewCountryInput = {
+        code: codeRef.current?.value,
+        continent: {
+          id: 1,
+        },
+        emoji: emojiRef.current?.value,
+        name: nameRef.current?.value,
+      };
+
+      addCountry({
+        variables: { data: data as NewCountryInput },
+      });
+      //TODO handle error
+    } else {
+      console.log("error in input");
+    }
   };
 
   const nameRef = useRef<HTMLInputElement>(null);
@@ -37,7 +60,11 @@ export default function NewCountryForm() {
         placeholder="country code"
         ref={codeRef}
       ></input>
-      <button role="button">add</button>
+      <button role="button" disabled={loading}>
+        add
+      </button>
+      {error && <p>error : {error.message}</p>}
+      {data && <p>country added with success</p>}
     </form>
   );
 }

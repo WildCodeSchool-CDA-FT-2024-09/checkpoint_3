@@ -28,3 +28,17 @@ export const COUNTRY_BY_CODE = gql`
     }
   }
 `;
+export const ADD_COUNTRY = gql`
+  mutation AddCountry($data: NewCountryInput!) {
+    addCountry(data: $data) {
+      code
+      continent {
+        id
+        name
+      }
+      emoji
+      id
+      name
+    }
+  }
+`;
