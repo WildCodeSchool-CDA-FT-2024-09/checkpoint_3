@@ -7,4 +7,28 @@
 
 button {
   margin: 4px;
+
+  background-color: rgb(20, 23, 96);
+  border: 0px;
+  min-height: 34px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: rgb(49, 53, 165);
+}
+
+input, select {
+  height: 30px;
+  background-color: rgb(3, 3, 92);
+  color: white;
+
+  margin: 4px;
+  border: 1px solid rgb(85, 33, 151);
+
+  border-radius: 4px;
+}
+select {
+  height: 33px;
 }

@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useCountryQuery } from "../generated/graphql-types";
 import Detail from "./components/Detail";
 
@@ -11,7 +11,21 @@ function Country() {
     },
   });
 
-  if (!details) return <h1>Country not found</h1>;
+  const navigate = useNavigate();
+
+  if (!details)
+    return (
+      <>
+        <h1>Country not found</h1>
+        <button onClick={() => navigate("/")}>
+          Return to country selection
+        </button>
+      </>
+    );
+
+  const returnToMenu = () => {
+    navigate("/");
+  };
 
   return (
     <>
@@ -25,6 +39,7 @@ function Country() {
           value={details?.country.continent?.name || "Unknown 🔍"}
         />
       </ul>
+      <button onClick={returnToMenu}>Return to country selection</button>
     </>
   );
 }

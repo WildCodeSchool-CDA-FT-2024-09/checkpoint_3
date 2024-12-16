@@ -1,0 +1,25 @@
+.country-button {
+    height: 50px;
+    min-width: 100px;
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+
+    display: inline-flex;
+    align-items: center;
+
+    background-color: rgb(69, 3, 183);
+    box-shadow: 1px 1px 9px 1px #271339;
+    border-radius: 10px;
+}
+
+.country-button:hover {
+    background-color: rgb(64, 86, 232);
+    box-shadow: 2px 2px 9px 3px #200737;
+
+    transition: 0.2s
+}
+
+.country-button .emoji {
+    font-size: 25px;
+}

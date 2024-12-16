@@ -7,6 +7,8 @@ import {
 } from "../generated/graphql-types";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import FormInput from "./components/FormInput/FormInput";
+import CountryButton from "./components/CountryButton";
 
 function App() {
   const { data: countries, refetch } = useCountriesQuery();
@@ -63,35 +65,35 @@ function App() {
 
   return (
     <>
-      <h1>Countries</h1>
+      <h1>Choose a Country 👇</h1>
       {countries?.countries.map((country) => (
-        <button
+        <CountryButton
           key={country.id}
-          onClick={() => navigate(`/country/${country.code}`)}
-        >
-          {`${country.name} ${country.emoji}`}
-        </button>
+          name={country.name}
+          emoji={country.emoji}
+          action={() => navigate(`/country/${country.code}`)}
+        />
       ))}
-      <h2>Add your own</h2>
+      <h2>Or add your own ➕</h2>
       <form onSubmit={handleSubmit}>
         <input
           onChange={handleInputChange}
           name="name"
           value={formInputs.name}
           placeholder="Country name"
-        ></input>
+        />
         <input
           onChange={handleInputChange}
           name="emoji"
           value={formInputs.emoji}
           placeholder="flag emoji"
-        ></input>
+        />
         <input
           onChange={handleInputChange}
           name="code"
           value={formInputs.code}
           placeholder="code"
-        ></input>
+        />
         <select
           name="continent"
           value={formInputs.continent}
