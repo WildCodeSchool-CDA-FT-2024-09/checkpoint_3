@@ -4,8 +4,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import Layout from "./components/Layout/Layout.tsx";
 import "./index.css";
-import CountriesList from "./components/CountriesList/CountriesList.tsx";
-import Country from "./pages/Country/Country.tsx";
+import CountryPage from "./pages/Country/CountryPage.tsx";
+import HomePage from "./pages/Home/HomePage.tsx";
 
 const client = new ApolloClient({
   uri: "http://localhost:4000",
@@ -19,11 +19,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <CountriesList />,
+        element: <HomePage />,
       },
       {
         path: "/country/:countryCode",
-        element: <Country />,
+        element: <CountryPage />,
       },
     ],
   },

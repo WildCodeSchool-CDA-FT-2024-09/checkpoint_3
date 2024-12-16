@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useCountryQuery } from "../../generated/graphql-types";
 
-export default function Country() {
+export default function CountryPage() {
   const { countryCode } = useParams();
   const { data } = useCountryQuery({ variables: { code: countryCode } });
   if (data)
