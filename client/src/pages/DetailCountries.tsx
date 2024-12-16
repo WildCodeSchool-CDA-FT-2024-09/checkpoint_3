@@ -12,7 +12,6 @@ import {
 const DetailCountries = () => {
   const { code } = useParams<{ code: string }>();
 
-  // Récupération des données
   const { loading, error, data } = useGetCountryByCodeQuery({
     variables: { code: code || "" },
   });

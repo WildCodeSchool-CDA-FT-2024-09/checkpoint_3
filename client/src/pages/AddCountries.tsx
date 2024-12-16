@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {
   useAddCountryMutation,
   useGetAllCountriesQuery,
+  useGetAllContinentsQuery,
 } from "../generated/graphql-types";
 import {
   Box,
@@ -13,27 +14,53 @@ import {
   Typography,
   CircularProgress,
   Alert,
+  MenuItem,
+  Select,
+  InputLabel,
+  FormControl,
 } from "@mui/material";
 
 const AddCountries = () => {
-  const [formData, setFormData] = useState({ name: "", emoji: "", code: "" });
+  const [formData, setFormData] = useState({
+    name: "",
+    code: "",
+    emoji: "",
+    continent: "",
+  });
+
   const [addCountry, { loading: adding, error }] = useAddCountryMutation();
   const { data, loading: fetching, refetch } = useGetAllCountriesQuery();
+  const { data: continentData, loading: loadingContinents } =
+    useGetAllContinentsQuery();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleContinentChange = (e: any) => {
+    setFormData({ ...formData, continent: e.target.value });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await addCountry({ variables: { data: formData } });
-    setFormData({ name: "", emoji: "", code: "" });
-    refetch(); // Rafraîchir la liste des pays
+    await addCountry({
+      variables: {
+        data: {
+          name: formData.name,
+          code: formData.code,
+          emoji: formData.emoji,
+          continent: { id: parseInt(formData.continent) },
+        },
+      },
+    });
+    setFormData({ name: "", code: "", emoji: "", continent: "" });
+    refetch();
   };
 
   return (
     <Box>
-      {/* Header */}
       <Box sx={{ textAlign: "center", backgroundColor: "#F7146B", padding: 2 }}>
         <Typography variant="h4" sx={{ color: "white", fontWeight: "bold" }}>
           Checkpoint : frontend
@@ -41,7 +68,6 @@ const AddCountries = () => {
         <Typography sx={{ color: "white" }}>Countries</Typography>
       </Box>
 
-      {/* Form */}
       <Box
         component="form"
         onSubmit={handleSubmit}
@@ -64,6 +90,16 @@ const AddCountries = () => {
           </Grid>
           <Grid item>
             <TextField
+              label="Code"
+              name="code"
+              value={formData.code}
+              onChange={handleChange}
+              required
+              inputProps={{ maxLength: 3 }}
+            />
+          </Grid>
+          <Grid item>
+            <TextField
               label="Emoji"
               name="emoji"
               value={formData.emoji}
@@ -72,14 +108,25 @@ const AddCountries = () => {
             />
           </Grid>
           <Grid item>
-            <TextField
-              label="Code"
-              name="code"
-              value={formData.code}
-              onChange={handleChange}
-              required
-              inputProps={{ maxLength: 3 }}
-            />
+            <FormControl fullWidth>
+              <InputLabel id="continent-select-label">Continent</InputLabel>
+              <Select
+                labelId="continent-select-label"
+                value={formData.continent}
+                onChange={handleContinentChange}
+                required
+              >
+                {loadingContinents ? (
+                  <MenuItem disabled>Loading...</MenuItem>
+                ) : (
+                  continentData?.continents.map((continent) => (
+                    <MenuItem key={continent.id} value={continent.id}>
+                      {continent.name}
+                    </MenuItem>
+                  ))
+                )}
+              </Select>
+            </FormControl>
           </Grid>
           <Grid item>
             <Button
@@ -94,14 +141,12 @@ const AddCountries = () => {
         </Grid>
       </Box>
 
-      {/* Error/Success Alert */}
       {error && (
         <Alert severity="error" sx={{ textAlign: "center" }}>
           {error.message}
         </Alert>
       )}
 
-      {/* Countries List */}
       <Grid container spacing={2} justifyContent="center">
         {fetching ? (
           <CircularProgress />
