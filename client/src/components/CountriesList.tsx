@@ -16,8 +16,8 @@ type countryType = {
 function CountriesList() {
   const { loading, error, data } = useQuery(GET_COUNTRIES);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error : {error.message}</p>;
+  if (loading) return <p>🥁 Loading...</p>;
+  if (error) return <p>☠️ Error: {error.message}</p>;
 
   return (
     <>
@@ -25,14 +25,24 @@ function CountriesList() {
       <Box
         sx={{
           display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          minHeight: "100vh",
+          flexWrap: "wrap",
+          gap: 2,
+          justifyContent: "center",
+          padding: 2,
         }}
       >
         <Stack direction="row" spacing={2}>
           {data.countries.map((country: countryType) => (
-            <Card key={country.id} sx={{ width: 200, textAlign: "center" }}>
+            <Card
+              key={country.id}
+              sx={{
+                width: 150,
+                maxWidth: "100%",
+                textAlign: "center",
+                flexGrow: 0,
+                flexShrink: 1,
+              }}
+            >
               <CardContent>
                 <Typography
                   gutterBottom
