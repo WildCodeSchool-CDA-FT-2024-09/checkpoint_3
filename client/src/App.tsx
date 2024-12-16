@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Nav from "./components/Nav";
+import Navbar from "./components/Navbar";
 
 const theme = createTheme({
   typography: {
@@ -40,7 +40,7 @@ function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Nav />
+        <Navbar />
         <Outlet />
       </ThemeProvider>
     </>
