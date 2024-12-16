@@ -28,7 +28,9 @@ function Country() {
       <h1>
         {data.country.name} [{data.country.code}]
       </h1>
-      <h2>Continent: {data.country.continent.name}</h2>
+      {data.country.continent && (
+        <h2>Continent: {data.country.continent?.name}</h2>
+      )}
 
       <Link to="/">[Back]</Link>
     </Box>

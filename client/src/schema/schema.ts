@@ -15,6 +15,15 @@ export const ADD_COUNTRY = gql`
   }
 `;
 
+export const GET_CONTINENTS = gql`
+  query Continents {
+    continents {
+      id
+      name
+    }
+  }
+`;
+
 export const GET_COUNTRIES = gql`
   query Countries {
     countries {

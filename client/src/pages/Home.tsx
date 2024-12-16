@@ -1,17 +1,31 @@
 import { useState } from "react";
-import { useMutation } from "@apollo/client";
-import { ADD_COUNTRY, GET_COUNTRIES } from "../schema/schema";
+import { useMutation, useQuery } from "@apollo/client";
+import { ADD_COUNTRY, GET_COUNTRIES, GET_CONTINENTS } from "../schema/schema";
 import List from "../components/CountriesList";
-import { Button, TextField } from "@mui/material";
+import {
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  TextField,
+} from "@mui/material";
 import Box from "@mui/material/Box";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 function Home() {
   const [formData, setFormData] = useState({ name: "", emoji: "", code: "" });
+  const [continent, setContinent] = useState<string>("");
+
+  const { data: continents } = useQuery(GET_CONTINENTS);
   const [addCountry] = useMutation(ADD_COUNTRY);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+  };
+
+  const handleChangeContinent = (event: SelectChangeEvent) => {
+    setContinent(event.target.value as string);
   };
 
   const handleSubmit = async () => {
@@ -21,6 +35,7 @@ function Home() {
           name: formData.name,
           code: formData.code,
           emoji: formData.emoji,
+          continent: continent,
         },
       },
       refetchQueries: [{ query: GET_COUNTRIES }],
@@ -67,6 +82,27 @@ function Home() {
           variant="outlined"
           fullWidth
         />
+        <Box sx={{ minWidth: 120 }}>
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Continent</InputLabel>
+            <Select
+              labelId="continent-select-label"
+              id="continent-select"
+              value={continent}
+              label="Continent"
+              onChange={handleChangeContinent}
+            >
+              {continents &&
+                continents.continents.map(
+                  (continent: { id: number; name: string }) => (
+                    <MenuItem key={continent.id} value={continent.id}>
+                      {continent.name}
+                    </MenuItem>
+                  ),
+                )}
+            </Select>
+          </FormControl>
+        </Box>
         <Button variant="contained" onClick={handleSubmit} color="primary">
           Add
         </Button>
