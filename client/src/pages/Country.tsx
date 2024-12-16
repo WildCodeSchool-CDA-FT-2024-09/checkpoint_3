@@ -17,14 +17,16 @@ function Country() {
     <div>
       <h1>Countries</h1>
       {countries?.map((country) => (
-        <div key={country.id}>
-          <Link to={`/country/${country.code}`}>
-            <h1>{country.name}</h1>
-          </Link>
+        <Link
+          key={country.id}
+          to={`/country/${country.code}`}
+          className="grid grid-cols-4 gap-4"
+        >
+          <h1>{country.name}</h1>
 
           <p>{country.emoji}</p>
           <p>{country.code}</p>
-        </div>
+        </Link>
       ))}
     </div>
   );

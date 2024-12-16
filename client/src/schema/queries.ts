@@ -18,6 +18,10 @@ export const GET_COUNTRY = gql`
       code
       name
       emoji
+      continent {
+        id
+        name
+      }
     }
   }
 `;
