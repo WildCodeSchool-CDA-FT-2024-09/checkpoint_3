@@ -1,3 +1,6 @@
+import { useParams } from "react-router-dom";
+
 export default function Pays() {
-    return <h2>pays</h2>;
+    const { code } = useParams();
+    return <h2>Pays : {code}</h2>;
 }

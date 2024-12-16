@@ -36,7 +36,7 @@ export default function Home() {
                 <button>add</button>
             </form>
 
-            <section>
+            <section className="section-card">
                 {data?.countries?.map((e) => (
                     <Card
                         key={e.id}

@@ -13,7 +13,7 @@ const router = createBrowserRouter([
                 element: <Home />,
             },
             {
-                path: "pays",
+                path: "/pays/:code",
                 element: <Pays />,
             },
         ],
