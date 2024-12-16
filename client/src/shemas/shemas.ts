@@ -24,3 +24,13 @@ export const GET_COUNTRIES = gql`
     }
   }
 `;
+
+export const ADDCOUNTRY = gql`
+  mutation AddNewCountry($name: String!, $emoji: String!, $code: String!) {
+    addCountry(data: { name: $name, emoji: $emoji, code: $code }) {
+      name
+      emoji
+      code
+    }
+  }
+`;
