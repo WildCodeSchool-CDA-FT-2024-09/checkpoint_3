@@ -85,7 +85,7 @@ export type CountryQueryVariables = Exact<{
 }>;
 
 
-export type CountryQuery = { __typename?: 'Query', country: { __typename?: 'Country', id: number, name: string, code: string, emoji: string, continent?: { __typename?: 'Continent', name: string } | null } };
+export type CountryQuery = { __typename?: 'Query', country: { __typename?: 'Country', name: string, id: number, emoji: string, code: string, continent?: { __typename?: 'Continent', name: string } | null } };
 
 
 export const GetCountriesDocument = gql`
@@ -133,13 +133,13 @@ export type GetCountriesQueryResult = Apollo.QueryResult<GetCountriesQuery, GetC
 export const CountryDocument = gql`
     query Country($code: String!) {
   country(code: $code) {
-    id
     name
-    code
+    id
+    emoji
     continent {
       name
     }
-    emoji
+    code
   }
 }
     `;

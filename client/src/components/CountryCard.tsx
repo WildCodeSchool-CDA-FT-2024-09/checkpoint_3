@@ -5,14 +5,14 @@ import "./CountryCard.css";
 interface CountryCardProps {
   name: string;
   emoji: string;
-  id: number;
+  code: string;
 }
 
-const CountryCard: React.FC<CountryCardProps> = ({ name, emoji, id }) => {
+const CountryCard: React.FC<CountryCardProps> = ({ name, emoji, code }) => {
   const navigate = useNavigate();
 
   const handleDetailsClick = () => {
-    navigate(`/country/${id}`);
+    navigate(`/country/${code}`);
   };
 
   return (

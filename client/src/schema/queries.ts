@@ -14,13 +14,13 @@ export const GET_COUNTRIES = gql`
 export const GET_COUNTRY_DETAILS = gql`
 query Country($code: String!) {
   country(code: $code) {
-    id
     name
-    code
+    id
+    emoji
     continent {
       name
     }
-    emoji
+    code
   }
 }
 `;
