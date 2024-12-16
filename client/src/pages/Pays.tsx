@@ -18,7 +18,7 @@ export default function Pays() {
     const countryCode = emojiToISO(code || "") || code?.trim().toUpperCase();
 
     const { data, loading, error } = useCountryQuery({
-        variables: { code: countryCode },
+        variables: { code: countryCode || "" },
         skip: !code,
     });
 
