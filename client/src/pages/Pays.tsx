@@ -13,12 +13,14 @@ export default function Pays() {
     if (error) return <p>Erreur : {error.message}</p>;
 
     return (
-        <div>
+        <article className="article-card-pays">
+            <p>{data?.country?.emoji}</p>
             <h2>
                 Pays : {data?.country?.name} ({data?.country?.code})
             </h2>
-            <p>Emoji : {data?.country?.emoji}</p>
-            <p>Continent : {data?.country?.continent?.name} </p>
-        </div>
+            {data?.country?.continent && (
+                <p>Continent : {data.country.continent.name}</p>
+            )}
+        </article>
     );
 }

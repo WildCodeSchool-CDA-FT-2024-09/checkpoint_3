@@ -9,9 +9,9 @@ export default function Card({ data }: CardProps) {
     return (
         <article className="card">
             <Link to={`/pays/${data.code}`}>
-                <h2>{data.name}</h2>
                 <p>{data.emoji} </p>
-                <p>{data.emoji}</p>{" "}
+                <h2>{data.name}</h2>
+                <p>{data.code} </p>
             </Link>
         </article>
     );

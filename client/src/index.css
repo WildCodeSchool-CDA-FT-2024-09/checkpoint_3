@@ -58,3 +58,10 @@ form {
     padding: 10px;
     text-align: center;
 }
+
+/* page card pays */
+
+.article-card-pays {
+    margin-top: 70px;
+    text-align: center;
+}
