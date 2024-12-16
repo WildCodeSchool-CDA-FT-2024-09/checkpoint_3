@@ -1,1 +1,10 @@
 @import "tailwindcss";
+@layer base {
+    header {
+        @apply flex flex-col align-middle justify-center;
+        @apply text-center;
+        h3 {
+    @apply font-extrabold;
+}
+    }
+}
