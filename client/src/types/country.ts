@@ -8,3 +8,8 @@ export interface Country {
     name: string;
   };
 }
+
+export interface Continent {
+  id: number;
+  name: string;
+}

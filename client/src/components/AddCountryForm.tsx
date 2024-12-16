@@ -1,36 +1,38 @@
 import { Paper, Button, Box } from "@mui/material";
 import { useState } from "react";
-import { useMutation } from "@apollo/client";
-import { GET_COUNTRIES } from "../graphql/queries";
+import { useMutation, useQuery } from "@apollo/client";
+import { GET_COUNTRIES, GET_CONTINENTS } from "../graphql/queries";
 import { ADD_COUNTRY } from "../graphql/mutations";
+import { Continent } from "../types/country";
 
 export default function AddCountryForm() {
   const [formData, setFormData] = useState({
     name: "",
     emoji: "",
     code: "",
+    continentId: null as number | null,
   });
 
+  const { data: continentsData } = useQuery<{ continents: Continent[] }>(
+    GET_CONTINENTS
+  );
   const [addCountry] = useMutation(ADD_COUNTRY);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Submitting with data:", formData); // Debug log
-
     try {
-      const result = await addCountry({
+      await addCountry({
         variables: {
           data: {
             name: formData.name,
             emoji: formData.emoji,
             code: formData.code.toUpperCase(),
+            continent: { id: formData.continentId }, // Doit être un entier
           },
         },
         refetchQueries: [{ query: GET_COUNTRIES }],
       });
-
-      console.log("Mutation result:", result);
-      setFormData({ name: "", emoji: "", code: "" });
+      setFormData({ name: "", emoji: "", code: "", continentId: null });
     } catch (error) {
       console.error("Error adding country:", error);
     }
@@ -92,6 +94,28 @@ export default function AddCountryForm() {
               }
               style={inputStyle}
             />
+          </div>
+
+          <div>
+            <label htmlFor="continent">Continent</label>
+            <select
+              id="continent"
+              value={formData.continentId ?? ""}
+              onChange={(e) =>
+                setFormData((prev) => ({
+                  ...prev,
+                  continentId: parseInt(e.target.value, 10),
+                }))
+              }
+              style={inputStyle}
+            >
+              <option value="">Select a continent</option>
+              {continentsData?.continents.map((continent) => (
+                <option key={continent.id} value={continent.id}>
+                  {continent.name}
+                </option>
+              ))}
+            </select>
           </div>
 
           <Button
