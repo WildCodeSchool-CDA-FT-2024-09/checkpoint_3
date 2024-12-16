@@ -14,7 +14,7 @@ const router = createBrowserRouter([
     element: <App />,
     children: [{ path: "/countries", element: <Countries /> }, 
       {
-        path: "/country/:name",
+        path: "/country/:code",
         element: <Country/>
       }
     ],

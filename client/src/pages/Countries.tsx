@@ -16,7 +16,7 @@ export default function Countries() {
     <AddCountry/>
     <div className="container">
       {data?.countries.map((c) => (
-        <Link to={`/country/${c.name}`} key={c.name}>
+        <Link to={`/country/${c.code}`} key={c.name}>
           <CountryCard name={c.name} emoji={c.emoji} />
         </Link>
       ))}
