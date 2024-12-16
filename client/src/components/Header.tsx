@@ -1,20 +1,15 @@
-// import React from 'react';
-import { AppBar, Toolbar, Typography, Box } from '@mui/material';
+import "./Header.css";
 
 const Header = () => {
   return (
-    <AppBar position="fixed" sx={{ backgroundColor: '#CD2A63' }}>
-      <Toolbar>
-        <Box display="flex" flexDirection="column" alignItems="center" width="100%">
-          <Typography variant="h4" component="h1" gutterBottom>
-            Checkpoint 3 : frontend
-          </Typography>
-          <Typography variant="subtitle1" component="p">
-            Countries
-          </Typography>
-        </Box>
-      </Toolbar>
-    </AppBar>
+    <header className="header">
+      <div className="toolbar">
+        <div className="header-content">
+          <h1 className="header-title">Checkpoint 3 : frontend</h1>
+          <p className="header-subtitle">Countries</p>
+        </div>
+      </div>
+    </header>
   );
 };
 

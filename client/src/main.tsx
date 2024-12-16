@@ -6,7 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import "./index.css";
 import App from "./App.tsx";
 import Country from "../src/pages/Country.tsx";
-import Detail from "./pages/Detail.tsx";
+// import Detail from "./pages/Detail.tsx";
 
 // Configuration des routes
 const router = createBrowserRouter([
@@ -20,7 +20,7 @@ const router = createBrowserRouter([
         children: [
           {
             path: ":countryId",
-            element: <Detail />,
+            // element: <Detail />,
           },
         ],
       },

@@ -1,0 +1,56 @@
+/* Conteneur principal pour la carte */
+.country-card {
+  width: 150px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  background-color: #fff;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.country-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Contenu de la carte */
+.country-card-content {
+  text-align: center;
+}
+
+/* Style du nom du pays */
+.country-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+/* Style de l'emoji */
+.country-emoji {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+/* Bouton Détails */
+.details-button {
+  padding: 6px 12px;
+  font-size: 14px;
+  color: #007bff;
+  background-color: transparent;
+  border: 1px solid #007bff;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.details-button:hover {
+  background-color: #007bff;
+  color: #fff;
+}
