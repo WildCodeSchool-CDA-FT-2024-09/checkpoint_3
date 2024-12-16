@@ -1,8 +1,8 @@
 import Card from "../components/Card";
-import { useCountriesQuery } from "../generated/graphql-types";
+import { useGetAllCountriesQuery } from "../generated/graphql-types";
 
 export default function Home() {
-    const { data, loading, error } = useCountriesQuery();
+    const { data, loading, error } = useGetAllCountriesQuery();
     console.log("%c⧭", "color: #ff0000", data);
 
     if (loading) return <p>chargement</p>;

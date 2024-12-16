@@ -1,24 +1,11 @@
 import { useParams } from "react-router-dom";
 import { useCountryQuery } from "../generated/graphql-types";
 
-function emojiToISO(emoji: string): string | null {
-    if (emoji.length === 4) {
-        const codePoints = Array.from(emoji)
-            .map((char) => char.codePointAt(0)! - 0x1f1e6)
-            .map((cp) => String.fromCharCode(cp + 65))
-            .join("");
-        return codePoints;
-    }
-    return null;
-}
-
 export default function Pays() {
     const { code } = useParams<{ code: string }>();
 
-    const countryCode = emojiToISO(code || "") || code?.trim().toUpperCase();
-
     const { data, loading, error } = useCountryQuery({
-        variables: { code: countryCode || "" },
+        variables: { code: code || "" },
         skip: !code,
     });
 
@@ -27,10 +14,11 @@ export default function Pays() {
 
     return (
         <div>
-            <h2>Pays : {data?.country?.name}</h2>
-            <p>Code : {data?.country?.code}</p>
+            <h2>
+                Pays : {data?.country?.name} ({data?.country?.code})
+            </h2>
             <p>Emoji : {data?.country?.emoji}</p>
-            <p>Continent : {data?.country?.continent?.name}</p>
+            <p>Continent : {data?.country?.continent?.name} </p>
         </div>
     );
 }
