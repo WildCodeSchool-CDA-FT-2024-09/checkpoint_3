@@ -12,7 +12,7 @@ export default function CountriesPage() {
       {data &&
         data.countries.map((country) => (
           <Link
-            to={`/country/${country.id}`}
+            to={`/country/${country.code}`}
             key={country.code}
             className="border-zinc-500 p-4 text-center min-w-24 rounded border"
           >
