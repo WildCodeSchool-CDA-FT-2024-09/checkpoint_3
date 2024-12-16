@@ -4,7 +4,6 @@ import { Link as RouterLink } from "react-router-dom";
 
 const pages = [
   { content: "Liste des Pays", to: "/countries" },
-  { content: "Pays", to: "/detailCountries" },
   { content: "Ajouter un Pays", to: "/addCountries" },
 ];
 
