@@ -7,19 +7,18 @@ const Home: React.FC = () => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
-  console.log(data);
-
   return (
-    <div className="country-list">
-      <h1>Countries List</h1>
-      {data?.countries.map((country) => (
-        <CountryCard
-          key={country.id}
-          id={country.id}
-          name={country.name}
-          emoji={country.emoji}
-        />
-      ))}
+    <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
+      <div className="flex flex-wrap gap-4 justify-center">
+        {data?.countries.map((country) => (
+          <CountryCard
+            key={country.id}
+            code={country.code}
+            name={country.name}
+            emoji={country.emoji}
+          />
+        ))}
+      </div>
     </div>
   );
 };
