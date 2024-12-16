@@ -1,10 +1,10 @@
 import "./App.css";
-import CountriesList from "./components/CountriesList";
+import AddCountryForm from "./components/AddCountryForm";
 
 function App() {
   return (
     <>
-      <CountriesList />
+      <AddCountryForm />
     </>
   );
 }
