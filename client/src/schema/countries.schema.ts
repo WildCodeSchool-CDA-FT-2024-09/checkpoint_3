@@ -13,4 +13,18 @@ export const ALL_COUNTRIES = gql`
       name
     }
   }
-`
+`;
+export const COUNTRY_BY_CODE = gql`
+  query Country($code: String!) {
+    country(code: $code) {
+      code
+      continent {
+        id
+        name
+      }
+      emoji
+      id
+      name
+    }
+  }
+`;
