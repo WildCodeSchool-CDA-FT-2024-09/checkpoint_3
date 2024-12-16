@@ -1,7 +1,64 @@
+import { useState } from "react";
+import List from "../components/CountriesList";
+import { Button, TextField } from "@mui/material";
+import Box from "@mui/material/Box";
+
 function Home() {
+  const [formData, setFormData] = useState({ name: "", emoji: "", code: "" });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = () => {
+    console.log("Form Data:", formData);
+
+    setFormData({ name: "", emoji: "", code: "" });
+  };
+
   return (
     <div>
-      <h1>Home</h1>
+      <Box
+        component="form"
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          gap: 2,
+        }}
+        noValidate
+        autoComplete="off"
+      >
+        <TextField
+          label="Name"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          variant="outlined"
+          fullWidth
+        />
+        <TextField
+          label="Emoji"
+          name="emoji"
+          value={formData.emoji}
+          onChange={handleChange}
+          variant="outlined"
+          fullWidth
+        />
+        <TextField
+          label="Code"
+          name="code"
+          value={formData.code}
+          onChange={handleChange}
+          variant="outlined"
+          fullWidth
+        />
+        <Button variant="contained" onClick={handleSubmit} color="primary">
+          Add
+        </Button>
+      </Box>
+      <List />
     </div>
   );
 }
