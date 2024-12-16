@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "codegen": "graphql.codegen --config codegen.ts"
   },
   "dependencies": {
     "react": "^18.3.1",
@@ -15,6 +16,8 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",
+    "@graphql-codegen/cli": "^5.0.3",
+    "@graphql-codegen/typescript-graphql-request": "^6.2.0",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.4",
