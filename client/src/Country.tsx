@@ -20,7 +20,10 @@ function Country() {
       </h1>
       <ul>
         <Detail title="Code" value={details?.country.code} />
-        <Detail title="Continent" value={details?.country.continent?.name} />
+        <Detail
+          title="Continent"
+          value={details?.country.continent?.name || "Unknown 🔍"}
+        />
       </ul>
     </>
   );

@@ -5,4 +5,10 @@
 
 .detail p {
     margin: 0 15px;
+    background-color: rgb(35, 71, 78);
+    border-radius: 2px;
+    padding: 4px 16px;
+    min-width: 50px;
+    font-weight: bold;
+    box-shadow: 2px 2px 9px 1px #131313;;
 }
