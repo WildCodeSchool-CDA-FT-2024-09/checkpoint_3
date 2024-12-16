@@ -1,6 +1,10 @@
 import { useState } from "react";
-import { useMutation, useQuery } from "@apollo/client";
-import { ADD_COUNTRY, GET_COUNTRIES, GET_CONTINENTS } from "../schema/schema";
+import { GET_COUNTRIES } from "../schema/schema";
+import {
+  useContinentsQuery,
+  useAddCountryMutation,
+  // useCountriesQuery,
+} from "../types/graphql-types";
 import List from "../components/CountriesList";
 import {
   Button,
@@ -16,8 +20,9 @@ function Home() {
   const [formData, setFormData] = useState({ name: "", emoji: "", code: "" });
   const [continent, setContinent] = useState<string>("");
 
-  const { data: continents } = useQuery(GET_CONTINENTS);
-  const [addCountry] = useMutation(ADD_COUNTRY);
+  const { data: continents } = useContinentsQuery();
+  const [addCountry] = useAddCountryMutation();
+  // const [refetchCountries] = useCountriesQuery();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -35,11 +40,14 @@ function Home() {
           name: formData.name,
           code: formData.code,
           emoji: formData.emoji,
-          continent: { id: continent },
+          continent: { id: parseInt(continent) },
         },
       },
       refetchQueries: [{ query: GET_COUNTRIES }],
-      onCompleted: () => {},
+      // refetchQueries: [{ query: refetchCountries }],
+      onCompleted: () => {
+        //useCountriesQuery().refetch();
+      },
     });
 
     setFormData({ name: "", emoji: "", code: "" });

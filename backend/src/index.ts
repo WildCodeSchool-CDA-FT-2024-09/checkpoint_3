@@ -1,3 +1,4 @@
+import * as dotenv from "dotenv";
 import "reflect-metadata";
 import express from "express";
 import http from "http";
@@ -8,6 +9,7 @@ import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHt
 import { db } from "./db";
 import schemaPromise from "./schema";
 
+dotenv.config();
 const port = process.env.SERVER_PORT || 4000;
 
 const allowedOrigins =
