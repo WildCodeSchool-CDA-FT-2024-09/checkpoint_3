@@ -2,7 +2,7 @@
 
 ## Instructions
 
-:warning: Commence par créer un branche `nom_prenom` et synchronise là avec le repo pour t'assurer des droits d'écriture.
+:warning: Commence par créer un branche `nom_prenom` et synchronise là avec le repo pour t'assurer des droits d'écriture. !
 Ensuite, lis les consignes jusqu'au bout
 
 Tu vas utiliser une API GraphQL qui fournit des informations sur un ensemble de pays.
