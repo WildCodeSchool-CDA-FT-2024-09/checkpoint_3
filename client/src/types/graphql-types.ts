@@ -1,163 +1,121 @@
-import { gql } from "@apollo/client";
-import * as Apollo from "@apollo/client";
+import { gql } from '@apollo/client';
+import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = {
-  [K in keyof T]: T[K];
-};
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]?: Maybe<T[SubKey]>;
-};
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]: Maybe<T[SubKey]>;
-};
-export type MakeEmpty<
-  T extends { [key: string]: unknown },
-  K extends keyof T
-> = { [_ in K]?: never };
-export type Incremental<T> =
-  | T
-  | {
-      [P in keyof T]?: P extends " $fragmentName" | "__typename" ? T[P] : never;
-    };
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
+export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: { input: string; output: string };
-  String: { input: string; output: string };
-  Boolean: { input: boolean; output: boolean };
-  Int: { input: number; output: number };
-  Float: { input: number; output: number };
+  ID: { input: string; output: string; }
+  String: { input: string; output: string; }
+  Boolean: { input: boolean; output: boolean; }
+  Int: { input: number; output: number; }
+  Float: { input: number; output: number; }
 };
 
 export type Continent = {
-  __typename?: "Continent";
-  id: Scalars["Int"]["output"];
-  name: Scalars["String"]["output"];
+  __typename?: 'Continent';
+  id: Scalars['Int']['output'];
+  name: Scalars['String']['output'];
 };
 
 export type Country = {
-  __typename?: "Country";
-  code: Scalars["String"]["output"];
+  __typename?: 'Country';
+  code: Scalars['String']['output'];
   continent?: Maybe<Continent>;
-  emoji: Scalars["String"]["output"];
-  id: Scalars["Int"]["output"];
-  name: Scalars["String"]["output"];
+  emoji: Scalars['String']['output'];
+  id: Scalars['Int']['output'];
+  name: Scalars['String']['output'];
 };
 
 export type Mutation = {
-  __typename?: "Mutation";
+  __typename?: 'Mutation';
   addContinent: Continent;
   addCountry: Country;
 };
 
+
 export type MutationAddContinentArgs = {
   data: NewContinentInput;
 };
+
 
 export type MutationAddCountryArgs = {
   data: NewCountryInput;
 };
 
 export type NewContinentInput = {
-  name: Scalars["String"]["input"];
+  name: Scalars['String']['input'];
 };
 
 export type NewCountryInput = {
-  code: Scalars["String"]["input"];
+  code: Scalars['String']['input'];
   continent?: InputMaybe<ObjectId>;
-  emoji: Scalars["String"]["input"];
-  name: Scalars["String"]["input"];
+  emoji: Scalars['String']['input'];
+  name: Scalars['String']['input'];
 };
 
 export type ObjectId = {
-  id: Scalars["Int"]["input"];
+  id: Scalars['Int']['input'];
 };
 
 export type Query = {
-  __typename?: "Query";
+  __typename?: 'Query';
   continents: Array<Continent>;
   countries: Array<Country>;
   country: Country;
 };
 
+
 export type QueryCountryArgs = {
-  code: Scalars["String"]["input"];
+  code: Scalars['String']['input'];
 };
 
 export type AddContinentMutationVariables = Exact<{
   data: NewContinentInput;
 }>;
 
-export type AddContinentMutation = {
-  __typename?: "Mutation";
-  addContinent: { __typename?: "Continent"; id: number; name: string };
-};
+
+export type AddContinentMutation = { __typename?: 'Mutation', addContinent: { __typename?: 'Continent', id: number, name: string } };
 
 export type AddCountryMutationVariables = Exact<{
   data: NewCountryInput;
 }>;
 
-export type AddCountryMutation = {
-  __typename?: "Mutation";
-  addCountry: {
-    __typename?: "Country";
-    code: string;
-    emoji: string;
-    id: number;
-    name: string;
-    continent?: { __typename?: "Continent"; id: number; name: string } | null;
-  };
-};
 
-export type ContinentsQueryVariables = Exact<{ [key: string]: never }>;
+export type AddCountryMutation = { __typename?: 'Mutation', addCountry: { __typename?: 'Country', code: string, emoji: string, id: number, name: string, continent?: { __typename?: 'Continent', id: number, name: string } | null } };
 
-export type ContinentsQuery = {
-  __typename?: "Query";
-  continents: Array<{ __typename?: "Continent"; id: number; name: string }>;
-};
+export type ContinentsQueryVariables = Exact<{ [key: string]: never; }>;
 
-export type CountriesQueryVariables = Exact<{ [key: string]: never }>;
 
-export type CountriesQuery = {
-  __typename?: "Query";
-  countries: Array<{
-    __typename?: "Country";
-    emoji: string;
-    id: number;
-    name: string;
-    continent?: { __typename?: "Continent"; name: string; id: number } | null;
-  }>;
-};
+export type ContinentsQuery = { __typename?: 'Query', continents: Array<{ __typename?: 'Continent', id: number, name: string }> };
+
+export type CountriesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type CountriesQuery = { __typename?: 'Query', countries: Array<{ __typename?: 'Country', code: string, emoji: string, id: number, name: string, continent?: { __typename?: 'Continent', id: number, name: string } | null }> };
 
 export type CountryQueryVariables = Exact<{
-  code: Scalars["String"]["input"];
+  code: Scalars['String']['input'];
 }>;
 
-export type CountryQuery = {
-  __typename?: "Query";
-  country: {
-    __typename?: "Country";
-    code: string;
-    emoji: string;
-    id: number;
-    name: string;
-    continent?: { __typename?: "Continent"; name: string; id: number } | null;
-  };
-};
+
+export type CountryQuery = { __typename?: 'Query', country: { __typename?: 'Country', code: string, emoji: string, id: number, name: string, continent?: { __typename?: 'Continent', name: string, id: number } | null } };
+
 
 export const AddContinentDocument = gql`
-  mutation AddContinent($data: NewContinentInput!) {
-    addContinent(data: $data) {
-      id
-      name
-    }
+    mutation AddContinent($data: NewContinentInput!) {
+  addContinent(data: $data) {
+    id
+    name
   }
-`;
-export type AddContinentMutationFn = Apollo.MutationFunction<
-  AddContinentMutation,
-  AddContinentMutationVariables
->;
+}
+    `;
+export type AddContinentMutationFn = Apollo.MutationFunction<AddContinentMutation, AddContinentMutationVariables>;
 
 /**
  * __useAddContinentMutation__
@@ -176,45 +134,28 @@ export type AddContinentMutationFn = Apollo.MutationFunction<
  *   },
  * });
  */
-export function useAddContinentMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    AddContinentMutation,
-    AddContinentMutationVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    AddContinentMutation,
-    AddContinentMutationVariables
-  >(AddContinentDocument, options);
-}
-export type AddContinentMutationHookResult = ReturnType<
-  typeof useAddContinentMutation
->;
-export type AddContinentMutationResult =
-  Apollo.MutationResult<AddContinentMutation>;
-export type AddContinentMutationOptions = Apollo.BaseMutationOptions<
-  AddContinentMutation,
-  AddContinentMutationVariables
->;
-export const AddCountryDocument = gql`
-  mutation AddCountry($data: NewCountryInput!) {
-    addCountry(data: $data) {
-      code
-      continent {
-        id
-        name
+export function useAddContinentMutation(baseOptions?: Apollo.MutationHookOptions<AddContinentMutation, AddContinentMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<AddContinentMutation, AddContinentMutationVariables>(AddContinentDocument, options);
       }
-      emoji
+export type AddContinentMutationHookResult = ReturnType<typeof useAddContinentMutation>;
+export type AddContinentMutationResult = Apollo.MutationResult<AddContinentMutation>;
+export type AddContinentMutationOptions = Apollo.BaseMutationOptions<AddContinentMutation, AddContinentMutationVariables>;
+export const AddCountryDocument = gql`
+    mutation AddCountry($data: NewCountryInput!) {
+  addCountry(data: $data) {
+    code
+    continent {
       id
       name
     }
+    emoji
+    id
+    name
   }
-`;
-export type AddCountryMutationFn = Apollo.MutationFunction<
-  AddCountryMutation,
-  AddCountryMutationVariables
->;
+}
+    `;
+export type AddCountryMutationFn = Apollo.MutationFunction<AddCountryMutation, AddCountryMutationVariables>;
 
 /**
  * __useAddCountryMutation__
@@ -233,35 +174,21 @@ export type AddCountryMutationFn = Apollo.MutationFunction<
  *   },
  * });
  */
-export function useAddCountryMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    AddCountryMutation,
-    AddCountryMutationVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<AddCountryMutation, AddCountryMutationVariables>(
-    AddCountryDocument,
-    options
-  );
-}
-export type AddCountryMutationHookResult = ReturnType<
-  typeof useAddCountryMutation
->;
-export type AddCountryMutationResult =
-  Apollo.MutationResult<AddCountryMutation>;
-export type AddCountryMutationOptions = Apollo.BaseMutationOptions<
-  AddCountryMutation,
-  AddCountryMutationVariables
->;
+export function useAddCountryMutation(baseOptions?: Apollo.MutationHookOptions<AddCountryMutation, AddCountryMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<AddCountryMutation, AddCountryMutationVariables>(AddCountryDocument, options);
+      }
+export type AddCountryMutationHookResult = ReturnType<typeof useAddCountryMutation>;
+export type AddCountryMutationResult = Apollo.MutationResult<AddCountryMutation>;
+export type AddCountryMutationOptions = Apollo.BaseMutationOptions<AddCountryMutation, AddCountryMutationVariables>;
 export const ContinentsDocument = gql`
-  query Continents {
-    continents {
-      id
-      name
-    }
+    query Continents {
+  continents {
+    id
+    name
   }
-`;
+}
+    `;
 
 /**
  * __useContinentsQuery__
@@ -278,68 +205,36 @@ export const ContinentsDocument = gql`
  *   },
  * });
  */
-export function useContinentsQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    ContinentsQuery,
-    ContinentsQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<ContinentsQuery, ContinentsQueryVariables>(
-    ContinentsDocument,
-    options
-  );
-}
-export function useContinentsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    ContinentsQuery,
-    ContinentsQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<ContinentsQuery, ContinentsQueryVariables>(
-    ContinentsDocument,
-    options
-  );
-}
-export function useContinentsSuspenseQuery(
-  baseOptions?:
-    | Apollo.SkipToken
-    | Apollo.SuspenseQueryHookOptions<ContinentsQuery, ContinentsQueryVariables>
-) {
-  const options =
-    baseOptions === Apollo.skipToken
-      ? baseOptions
-      : { ...defaultOptions, ...baseOptions };
-  return Apollo.useSuspenseQuery<ContinentsQuery, ContinentsQueryVariables>(
-    ContinentsDocument,
-    options
-  );
-}
+export function useContinentsQuery(baseOptions?: Apollo.QueryHookOptions<ContinentsQuery, ContinentsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ContinentsQuery, ContinentsQueryVariables>(ContinentsDocument, options);
+      }
+export function useContinentsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ContinentsQuery, ContinentsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ContinentsQuery, ContinentsQueryVariables>(ContinentsDocument, options);
+        }
+export function useContinentsSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<ContinentsQuery, ContinentsQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<ContinentsQuery, ContinentsQueryVariables>(ContinentsDocument, options);
+        }
 export type ContinentsQueryHookResult = ReturnType<typeof useContinentsQuery>;
-export type ContinentsLazyQueryHookResult = ReturnType<
-  typeof useContinentsLazyQuery
->;
-export type ContinentsSuspenseQueryHookResult = ReturnType<
-  typeof useContinentsSuspenseQuery
->;
-export type ContinentsQueryResult = Apollo.QueryResult<
-  ContinentsQuery,
-  ContinentsQueryVariables
->;
+export type ContinentsLazyQueryHookResult = ReturnType<typeof useContinentsLazyQuery>;
+export type ContinentsSuspenseQueryHookResult = ReturnType<typeof useContinentsSuspenseQuery>;
+export type ContinentsQueryResult = Apollo.QueryResult<ContinentsQuery, ContinentsQueryVariables>;
 export const CountriesDocument = gql`
-  query Countries {
-    countries {
-      emoji
+    query Countries {
+  countries {
+    code
+    emoji
+    id
+    name
+    continent {
       id
       name
-      continent {
-        name
-        id
-      }
     }
   }
-`;
+}
+    `;
 
 /**
  * __useCountriesQuery__
@@ -356,66 +251,36 @@ export const CountriesDocument = gql`
  *   },
  * });
  */
-export function useCountriesQuery(
-  baseOptions?: Apollo.QueryHookOptions<CountriesQuery, CountriesQueryVariables>
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<CountriesQuery, CountriesQueryVariables>(
-    CountriesDocument,
-    options
-  );
-}
-export function useCountriesLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    CountriesQuery,
-    CountriesQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<CountriesQuery, CountriesQueryVariables>(
-    CountriesDocument,
-    options
-  );
-}
-export function useCountriesSuspenseQuery(
-  baseOptions?:
-    | Apollo.SkipToken
-    | Apollo.SuspenseQueryHookOptions<CountriesQuery, CountriesQueryVariables>
-) {
-  const options =
-    baseOptions === Apollo.skipToken
-      ? baseOptions
-      : { ...defaultOptions, ...baseOptions };
-  return Apollo.useSuspenseQuery<CountriesQuery, CountriesQueryVariables>(
-    CountriesDocument,
-    options
-  );
-}
-export type CountriesQueryHookResult = ReturnType<typeof useCountriesQuery>;
-export type CountriesLazyQueryHookResult = ReturnType<
-  typeof useCountriesLazyQuery
->;
-export type CountriesSuspenseQueryHookResult = ReturnType<
-  typeof useCountriesSuspenseQuery
->;
-export type CountriesQueryResult = Apollo.QueryResult<
-  CountriesQuery,
-  CountriesQueryVariables
->;
-export const CountryDocument = gql`
-  query Country($code: String!) {
-    country(code: $code) {
-      code
-      continent {
-        name
-        id
+export function useCountriesQuery(baseOptions?: Apollo.QueryHookOptions<CountriesQuery, CountriesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<CountriesQuery, CountriesQueryVariables>(CountriesDocument, options);
       }
-      emoji
-      id
+export function useCountriesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CountriesQuery, CountriesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<CountriesQuery, CountriesQueryVariables>(CountriesDocument, options);
+        }
+export function useCountriesSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<CountriesQuery, CountriesQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<CountriesQuery, CountriesQueryVariables>(CountriesDocument, options);
+        }
+export type CountriesQueryHookResult = ReturnType<typeof useCountriesQuery>;
+export type CountriesLazyQueryHookResult = ReturnType<typeof useCountriesLazyQuery>;
+export type CountriesSuspenseQueryHookResult = ReturnType<typeof useCountriesSuspenseQuery>;
+export type CountriesQueryResult = Apollo.QueryResult<CountriesQuery, CountriesQueryVariables>;
+export const CountryDocument = gql`
+    query Country($code: String!) {
+  country(code: $code) {
+    code
+    continent {
       name
+      id
     }
+    emoji
+    id
+    name
   }
-`;
+}
+    `;
 
 /**
  * __useCountryQuery__
@@ -433,56 +298,30 @@ export const CountryDocument = gql`
  *   },
  * });
  */
-export function useCountryQuery(
-  baseOptions: Apollo.QueryHookOptions<CountryQuery, CountryQueryVariables> &
-    ({ variables: CountryQueryVariables; skip?: boolean } | { skip: boolean })
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<CountryQuery, CountryQueryVariables>(
-    CountryDocument,
-    options
-  );
-}
-export function useCountryLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<CountryQuery, CountryQueryVariables>
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<CountryQuery, CountryQueryVariables>(
-    CountryDocument,
-    options
-  );
-}
-export function useCountrySuspenseQuery(
-  baseOptions?:
-    | Apollo.SkipToken
-    | Apollo.SuspenseQueryHookOptions<CountryQuery, CountryQueryVariables>
-) {
-  const options =
-    baseOptions === Apollo.skipToken
-      ? baseOptions
-      : { ...defaultOptions, ...baseOptions };
-  return Apollo.useSuspenseQuery<CountryQuery, CountryQueryVariables>(
-    CountryDocument,
-    options
-  );
-}
+export function useCountryQuery(baseOptions: Apollo.QueryHookOptions<CountryQuery, CountryQueryVariables> & ({ variables: CountryQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<CountryQuery, CountryQueryVariables>(CountryDocument, options);
+      }
+export function useCountryLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CountryQuery, CountryQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<CountryQuery, CountryQueryVariables>(CountryDocument, options);
+        }
+export function useCountrySuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<CountryQuery, CountryQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<CountryQuery, CountryQueryVariables>(CountryDocument, options);
+        }
 export type CountryQueryHookResult = ReturnType<typeof useCountryQuery>;
 export type CountryLazyQueryHookResult = ReturnType<typeof useCountryLazyQuery>;
-export type CountrySuspenseQueryHookResult = ReturnType<
-  typeof useCountrySuspenseQuery
->;
-export type CountryQueryResult = Apollo.QueryResult<
-  CountryQuery,
-  CountryQueryVariables
->;
+export type CountrySuspenseQueryHookResult = ReturnType<typeof useCountrySuspenseQuery>;
+export type CountryQueryResult = Apollo.QueryResult<CountryQuery, CountryQueryVariables>;
 export const namedOperations = {
   Query: {
-    Continents: "Continents",
-    Countries: "Countries",
-    Country: "Country",
+    Continents: 'Continents',
+    Countries: 'Countries',
+    Country: 'Country'
   },
   Mutation: {
-    AddContinent: "AddContinent",
-    AddCountry: "AddCountry",
-  },
-};
+    AddContinent: 'AddContinent',
+    AddCountry: 'AddCountry'
+  }
+}

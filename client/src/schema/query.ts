@@ -10,17 +10,18 @@ export const GET_CONTINENTS = gql`
 `;
 
 export const GET_COUNTRIES = gql`
-  query Countries {
-    countries {
-      emoji
+query Countries {
+  countries {
+    code
+    emoji
+    id
+    name
+    continent {
       id
       name
-      continent {
-        name
-        id
-      }
     }
   }
+}
 `;
 
 export const GET_COUNTRY_BY_CODE = gql`

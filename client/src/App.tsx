@@ -1,19 +1,15 @@
 import React from "react";
-import { Button, Container, Typography } from "@mui/material";
-
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import CountryDetails from "./components/CountryDetails";
+import Home from "./pages/Home";
 const App: React.FC = () => {
   return (
-    <Container maxWidth="sm" style={{ textAlign: "center", marginTop: "2rem" }}>
-      <Typography variant="h3" gutterBottom>
-        Bienvenue sur MUI avec Vite
-      </Typography>
-      <Typography variant="body1" gutterBottom>
-        Testons un bouton Material-UI :
-      </Typography>
-      <Button variant="contained" color="primary">
-        Cliquez-moi
-      </Button>
-    </Container>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/country/:code" element={<CountryDetails />} />
+      </Routes>
+    </Router>
   );
 };
 
