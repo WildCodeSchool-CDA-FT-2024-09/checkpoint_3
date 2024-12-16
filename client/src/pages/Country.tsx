@@ -4,11 +4,6 @@ import { GET_COUNTRIES } from "../schema/queries";
 import CountryCard from "../components/CountryCard";
 
 export default function Country() {
-  // const countries = [
-  //   { id: 1, name: "France" },
-  //   { id: 2, name: "Germany" },
-  //   { id: 3, name: "Italy" },
-  // ];
   const { loading, error, data } = useQuery(GET_COUNTRIES);
 
   if (loading) return <p>Loading...</p>;
@@ -30,6 +25,7 @@ export default function Country() {
           (country: { id: number; name: string; emoji: string }) => (
             <CountryCard
               key={country.id}
+              id={country.id} 
               name={country.name}
               emoji={country.emoji}
             />
