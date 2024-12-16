@@ -5,13 +5,19 @@ import { ApolloProvider } from "@apollo/client";
 import "./index.css";
 import App from "./App.tsx";
 import client from "./serivces/connexion.ts";
-import Country from "./pages/Country.tsx";
+import Countries from "./pages/Countries.tsx";
+import Country from "./pages/Country.tsx"
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    children: [{ path: "/country", element: <Country /> }],
+    children: [{ path: "/countries", element: <Countries /> }, 
+      {
+        path: "/country/:name",
+        element: <Country/>
+      }
+    ],
   },
 ]);
 

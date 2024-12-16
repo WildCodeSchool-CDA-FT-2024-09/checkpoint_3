@@ -1,20 +1,7 @@
-import CountryCard from "../components/CountryCard";
-import { useCountriesQuery } from "../generated/graphql-types";
-import './CountryPage.css'
-
+import { useParams } from "react-router-dom";
 
 export default function Country() {
-  const { loading, error, data } = useCountriesQuery();
-  if (loading) return <p> Loading </p>;
-  if (error) return <p> Error : </p>;
-
-  console.info(data);
-
-  return (
-    <div className="container">
-      {data?.countries.map((c) => (
-        <CountryCard name={c.name} emoji={c.emoji} />
-      ))}
-    </div>
-  );
+const currentCountry = useParams()
+console.log(currentCountry)
+  return <p> {currentCountry.name} {currentCountry.code }{currentCountry.emoji}</p>
 }

@@ -1,4 +1,5 @@
-import "./Country.css";
+import "./CountryCard.css";
+
 
 interface Country {
   name: string;
@@ -8,8 +9,10 @@ interface Country {
 export default function CountryCard({ name, emoji }: Country) {
   return (
     <section className="CardCountry">
-      <div> {name}</div>
-      <div> {emoji}</div>
+    
+        <div> {name}</div>
+        <div> {emoji}</div>
+
     </section>
   );
 }
