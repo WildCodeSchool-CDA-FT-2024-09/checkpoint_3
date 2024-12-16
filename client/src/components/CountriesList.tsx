@@ -4,7 +4,7 @@ import { GET_COUNTRIES } from "../schema/schema";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { Box, Stack } from "@mui/material";
+import { Box } from "@mui/material";
 
 type countryType = {
   id: number;
@@ -31,32 +31,30 @@ function CountriesList() {
           padding: 2,
         }}
       >
-        <Stack direction="row" spacing={2}>
-          {data.countries.map((country: countryType) => (
-            <Card
-              key={country.id}
-              sx={{
-                width: 150,
-                maxWidth: "100%",
-                textAlign: "center",
-                flexGrow: 0,
-                flexShrink: 1,
-              }}
-            >
-              <CardContent>
-                <Typography
-                  gutterBottom
-                  sx={{ color: "text.secondary", fontSize: 14 }}
-                >
-                  {country.name}
-                </Typography>
-                <Typography sx={{ fontSize: 42 }}>
-                  <Link to={`/country/${country.code}`}>{country.emoji}</Link>
-                </Typography>
-              </CardContent>
-            </Card>
-          ))}
-        </Stack>
+        {data.countries.map((country: countryType) => (
+          <Card
+            key={country.id}
+            sx={{
+              width: 150,
+              maxWidth: "100%",
+              textAlign: "center",
+              flexGrow: 0,
+              flexShrink: 1,
+            }}
+          >
+            <CardContent>
+              <Typography
+                gutterBottom
+                sx={{ color: "text.secondary", fontSize: 14 }}
+              >
+                {country.name}
+              </Typography>
+              <Typography sx={{ fontSize: 42 }}>
+                <Link to={`/country/${country.code}`}>{country.emoji}</Link>
+              </Typography>
+            </CardContent>
+          </Card>
+        ))}
       </Box>
     </>
   );
