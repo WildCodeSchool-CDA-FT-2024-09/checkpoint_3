@@ -25,6 +25,7 @@ export default function HomePage() {
           key={country.code}
           name={country.name}
           emoji={country.emoji}
+          code={country.code}
         />
       ))}
     </Box>

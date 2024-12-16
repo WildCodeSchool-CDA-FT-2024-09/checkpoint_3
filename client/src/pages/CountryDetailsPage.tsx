@@ -1,4 +1,4 @@
-import { Typography, Box, Paper } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { GET_COUNTRY } from "../graphql/queries";
@@ -16,16 +16,25 @@ export default function CountryDetailsPage() {
   if (!data?.country) return <Typography>Country not found</Typography>;
 
   return (
-    <Box>
-      <Typography variant="h4" component="h1" gutterBottom>
-        {data.country.emoji} {data.country.name}
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: 2,
+      }}
+    >
+      <Typography variant="h1" component="p" sx={{ fontSize: "6rem" }}>
+        {data.country.emoji}
       </Typography>
-      <Paper sx={{ p: 2, mt: 2 }}>
-        <Typography variant="body1">Code: {data.country.code}</Typography>
-        <Typography variant="body1">
+      <Typography variant="h5" component="h2">
+        Name: {data.country.name} ({data.country.code})
+      </Typography>
+      {data.country.continent && (
+        <Typography variant="h6" component="h3">
           Continent: {data.country.continent.name}
         </Typography>
-      </Paper>
+      )}
     </Box>
   );
 }
