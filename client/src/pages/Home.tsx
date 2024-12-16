@@ -1,18 +1,31 @@
 import { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { ADD_COUNTRY, GET_COUNTRIES } from "../schema/schema";
 import List from "../components/CountriesList";
 import { Button, TextField } from "@mui/material";
 import Box from "@mui/material/Box";
 
 function Home() {
   const [formData, setFormData] = useState({ name: "", emoji: "", code: "" });
+  const [addCountry] = useMutation(ADD_COUNTRY);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = () => {
-    console.log("Form Data:", formData);
+  const handleSubmit = async () => {
+    await addCountry({
+      variables: {
+        data: {
+          name: formData.name,
+          code: formData.code,
+          emoji: formData.emoji,
+        },
+      },
+      refetchQueries: [{ query: GET_COUNTRIES }],
+      onCompleted: () => {},
+    });
 
     setFormData({ name: "", emoji: "", code: "" });
   };

@@ -1,21 +1,7 @@
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
+import { GET_COUNTRY } from "../schema/schema";
 import { Box, Typography } from "@mui/material";
 import { Link, useParams } from "react-router-dom";
-
-const GET_COUNTRY = gql`
-  query Country($code: String!) {
-    country(code: $code) {
-      id
-      name
-      code
-      emoji
-      continent {
-        id
-        name
-      }
-    }
-  }
-`;
 
 function Country() {
   const { code } = useParams<string>();

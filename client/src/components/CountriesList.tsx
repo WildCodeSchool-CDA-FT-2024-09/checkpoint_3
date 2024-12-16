@@ -1,24 +1,10 @@
 import { Link } from "react-router-dom";
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
+import { GET_COUNTRIES } from "../schema/schema";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { Box, Stack } from "@mui/material";
-
-const GET_COUNTRIES = gql`
-  query Countries {
-    countries {
-      id
-      name
-      emoji
-      code
-      continent {
-        id
-        name
-      }
-    }
-  }
-`;
 
 type countryType = {
   id: number;
