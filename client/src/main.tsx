@@ -4,11 +4,18 @@ import App from './App.tsx'
 import client from "./services/connexion.ts";
 import { ApolloProvider } from '@apollo/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import CountryList from './pages/CountryList.tsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />
+    element: <App />,
+    children: [
+      {
+        path: "/list",
+        element: <CountryList />
+      }
+    ]
   }
 ])
 
