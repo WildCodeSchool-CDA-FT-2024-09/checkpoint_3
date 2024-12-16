@@ -3,11 +3,11 @@ import { AppBar, Toolbar, Typography, Box } from '@mui/material';
 
 const Header = () => {
   return (
-    <AppBar position="static" color="primary">
+    <AppBar position="fixed" sx={{ backgroundColor: '#CD2A63' }}>
       <Toolbar>
-        <Box display="flex" flexDirection="column" alignItems="center" width="100%" color="pink">
+        <Box display="flex" flexDirection="column" alignItems="center" width="100%">
           <Typography variant="h4" component="h1" gutterBottom>
-            Checkpoint : frontend
+            Checkpoint 3 : frontend
           </Typography>
           <Typography variant="subtitle1" component="p">
             Countries

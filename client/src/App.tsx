@@ -1,11 +1,14 @@
-import './App.css'
+import "./App.css";
+import Header from "./components/Header";
 import { Outlet } from "react-router";
 
 export default function App() {
   return (
     <div>
-      <h1>Checkpoint3</h1>
-      <Outlet />
+      <Header />
+      <div style={{ paddingTop: "64px" }}>
+        <Outlet />
+      </div>
     </div>
   );
 }
