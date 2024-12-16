@@ -1,10 +1,10 @@
 import "./App.css";
-import CountryCard from "./components/CountryCard";
+import CountriesList from "./components/CountriesList";
 
 function App() {
   return (
     <>
-      <CountryCard name="France" emoji="🇫🇷" />
+      <CountriesList />
     </>
   );
 }
