@@ -1,6 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ApolloProvider } from "@apollo/client";
 import connection from "./services/connection.ts";
 import App from "./App.tsx";
@@ -14,7 +14,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        path: "/country",
+        path: "country",
         element: <Country />,
       },
     ],
