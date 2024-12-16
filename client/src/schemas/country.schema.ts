@@ -7,9 +7,10 @@ export const GET_CONTINENTS_AND_COUNTRIES = gql`
       id
     }
     countries {
+      emoji
       code
-      id
       name
+      id
     }
   }
 `;

@@ -78,7 +78,7 @@ export type QueryCountryArgs = {
 export type ContinentsAndCountriesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ContinentsAndCountriesQuery = { __typename?: 'Query', continents: Array<{ __typename?: 'Continent', name: string, id: number }>, countries: Array<{ __typename?: 'Country', code: string, id: number, name: string }> };
+export type ContinentsAndCountriesQuery = { __typename?: 'Query', continents: Array<{ __typename?: 'Continent', name: string, id: number }>, countries: Array<{ __typename?: 'Country', emoji: string, code: string, name: string, id: number }> };
 
 export type CountryQueryVariables = Exact<{
   countryCode2: Scalars['String']['input'];
@@ -95,9 +95,10 @@ export const ContinentsAndCountriesDocument = gql`
     id
   }
   countries {
+    emoji
     code
-    id
     name
+    id
   }
 }
     `;

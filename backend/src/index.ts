@@ -8,7 +8,6 @@ import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHt
 import { db } from "./db";
 import schemaPromise from "./schema";
 
-// Charger les variables d'environnement à partir du fichier .env
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -16,7 +15,6 @@ const port = process.env.SERVER_PORT || 4000;
 const allowedOrigins =
   process.env.CORS_ALLOWED_ORIGINS || "http://localhost:5173";
 
-// Vérifier les variables d'environnement
 console.log(`CORS_ALLOWED_ORIGINS: ${allowedOrigins}`);
 
 schemaPromise.then(async (schema) => {
@@ -32,9 +30,8 @@ schemaPromise.then(async (schema) => {
     credentials: true,
   };
 
-  console.log("CORS config:", corsConfig); // Vérifier la configuration CORS
+  console.log("CORS config:", corsConfig);
 
-  // Appliquer la configuration CORS à ton application Express
   app.use(cors(corsConfig));
 
   const context = async ({ req, res }: any) => ({ req, res });

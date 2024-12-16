@@ -1,0 +1,34 @@
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  padding: 20px;
+}
+
+li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 120px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid black;
+  font-weight: bold;
+  transition: opacity 0.3s;
+}
+
+li:hover {
+  opacity: 1;
+}
+
+li .emojie {
+  font-size: 60px;
+}
+
+li .name {
+  font-size: 16px;
+  margin-top: 8px;
+}
