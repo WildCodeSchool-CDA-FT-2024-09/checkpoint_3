@@ -14,6 +14,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 const documents = {
+    "\n  mutation AddCountry($data: NewCountryInput!) {\n    addCountry(data: $data) {\n      id\n      code\n      name\n      emoji\n      continent {\n        name\n      }\n    }\n  }\n": types.AddCountryDocument,
     "\n  query GetCountries {\n    countries {\n      id\n      code\n      name\n      emoji\n      continent {\n        id\n        name\n      }\n    }\n  }\n": types.GetCountriesDocument,
     "\n  query GetCountry($code: String!) {\n    country(code: $code) {\n      id\n      code\n      name\n      emoji\n      continent {\n        id\n        name\n      }\n    }\n  }\n": types.GetCountryDocument,
 };
@@ -32,6 +33,10 @@ const documents = {
  */
 export function gql(source: string): unknown;
 
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  mutation AddCountry($data: NewCountryInput!) {\n    addCountry(data: $data) {\n      id\n      code\n      name\n      emoji\n      continent {\n        name\n      }\n    }\n  }\n"): (typeof documents)["\n  mutation AddCountry($data: NewCountryInput!) {\n    addCountry(data: $data) {\n      id\n      code\n      name\n      emoji\n      continent {\n        name\n      }\n    }\n  }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

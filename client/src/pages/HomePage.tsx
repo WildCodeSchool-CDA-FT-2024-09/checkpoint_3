@@ -3,6 +3,7 @@ import { useQuery } from "@apollo/client";
 import { GET_COUNTRIES } from "../graphql/queries";
 import CountryCard from "../components/CountryCard";
 import { Country } from "../types/country";
+import AddCountryForm from "../components/AddCountryForm";
 
 export default function HomePage() {
   const { loading, error, data } = useQuery(GET_COUNTRIES);
@@ -11,23 +12,26 @@ export default function HomePage() {
   if (error) return <Typography>Error: {error.message}</Typography>;
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexWrap: "wrap",
-        gap: 3,
-        justifyContent: "center",
-        p: 3,
-      }}
-    >
-      {data?.countries.map((country: Country) => (
-        <CountryCard
-          key={country.code}
-          name={country.name}
-          emoji={country.emoji}
-          code={country.code}
-        />
-      ))}
+    <Box>
+      <AddCountryForm />
+      <Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: 3,
+          justifyContent: "center",
+          p: 3,
+        }}
+      >
+        {data?.countries.map((country: Country) => (
+          <CountryCard
+            key={country.code}
+            name={country.name}
+            emoji={country.emoji}
+            code={country.code}
+          />
+        ))}
+      </Box>
     </Box>
   );
 }
