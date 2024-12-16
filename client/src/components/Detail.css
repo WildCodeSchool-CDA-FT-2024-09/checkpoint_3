@@ -1,0 +1,8 @@
+.detail {
+    display: flex;
+    align-items: center;
+}
+
+.detail p {
+    margin: 0 15px;
+}

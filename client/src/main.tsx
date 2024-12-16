@@ -5,6 +5,7 @@ import "./index.css";
 import App from "./App.tsx";
 import Country from "./Country.tsx";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import NotFound from "./NotFound.tsx";
 
 const router = createBrowserRouter([
   {
@@ -12,8 +13,12 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "/country/:id",
+    path: "/country/:code",
     element: <Country />,
+  },
+  {
+    path: "*",
+    element: <NotFound text="Page not found" />,
   },
 ]);
 

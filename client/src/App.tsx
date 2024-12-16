@@ -13,7 +13,7 @@ function App() {
       {countries?.countries.map((country) => (
         <button
           key={country.id}
-          onClick={() => navigate(`/country/${country.id}`)}
+          onClick={() => navigate(`/country/${country.code}`)}
         >
           {`${country.name} ${country.emoji}`}
         </button>
