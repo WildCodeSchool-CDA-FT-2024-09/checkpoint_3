@@ -21,11 +21,11 @@ function DetailCountry() {
   const { country } = data;
 
   return (
-    <div>
-      <h1>
+    <div className="border rounded-lg p-4 shadow hover:shadow-lg transition duration-300 transform hover:-translate-y-1 text-center mt-10">
+      <h1 className="my-10">
         {country.name} ({country.emoji})
       </h1>
-      <p>Country Code: {country.code}</p>
+      <p className="">Country Code: {country.code}</p>
       <p>Continent: {country.continent?.name}</p>
     </div>
   );

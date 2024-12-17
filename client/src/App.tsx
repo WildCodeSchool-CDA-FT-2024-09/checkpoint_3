@@ -1,26 +1,14 @@
 import { Outlet } from "react-router-dom";
 import "./App.css";
-import { useQuery, gql } from "@apollo/client";
-
-const GET_COUNTRIES = gql`
-  query Countries {
-    countries {
-      id
-      code
-      name
-      emoji
-    }
-  }
-`;
+import { Link } from "react-router-dom";
 
 function App() {
-  const { data, loading, error } = useQuery(GET_COUNTRIES);
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
-  console.log(data);
   return (
     <div>
-      <h1>Mon Appli</h1>
+      <h1 className="mb-10">Géographie</h1>
+      <Link to="/addACountry" className="border rounded-lg p-4 shadow hover:shadow-lg transition duration-300 transform hover:-translate-y-1 text-center">
+      <h2 className="text-3xl">Ajouter un Pays</h2>
+      </Link>
       <Outlet />
     </div>
   );

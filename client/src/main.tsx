@@ -7,6 +7,7 @@ import App from "./App.tsx";
 import "./index.css";
 import Country from "./pages/Country.tsx";
 import DetailCountry from "./pages/DetailCountry.tsx";
+import AddACountry from "./components/AddACountry.tsx";
 
 const router = createBrowserRouter([
   {
@@ -22,7 +23,12 @@ const router = createBrowserRouter([
         index: true,
         path: "country/:code",
         element: <DetailCountry />,
-      }
+      },
+      {
+        index: true,
+        path: "addACountry",
+        element: <AddACountry />,
+      },
     ],
   },
 ]);
