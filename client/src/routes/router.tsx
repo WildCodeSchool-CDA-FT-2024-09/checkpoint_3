@@ -3,7 +3,7 @@ import App from "../App"; // Adjust the path as necessary
 
 const router = createBrowserRouter([
   {
-    path: "/home",
+    path: "/",
     element: <App />,
   },
 ]);
