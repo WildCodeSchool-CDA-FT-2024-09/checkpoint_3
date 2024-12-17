@@ -4,11 +4,9 @@ import { useCountriesQuery } from "./generated/graphql-types";
 function App() {
   const { loading, error, data } = useCountriesQuery();
 
-  console.log(data);
-
   if (error) return <p>There id an Error</p>;
   if (loading) return <p>Loading...</p>;
-  console.log(data);
+
   return (
     <main className="container">
       <section className="row">
