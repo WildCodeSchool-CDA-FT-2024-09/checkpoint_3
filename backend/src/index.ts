@@ -10,10 +10,10 @@ import { db } from "./db";
 import schemaPromise from "./schema";
 
 dotenv.config();
-const port = process.env.SERVER_PORT || 4000;
+const port = (process.env.SERVER_PORT as String) || 4000;
 
 const allowedOrigins =
-  process.env.CORS_ALLOWED_ORIGINS || "http://localhost:5173";
+  (process.env.CORS_ALLOWED_ORIGINS as String) || "http://localhost:3000";
 
 schemaPromise.then(async (schema) => {
   await db.initialize();
