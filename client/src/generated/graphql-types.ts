@@ -80,6 +80,13 @@ export type CountriesQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type CountriesQuery = { __typename?: 'Query', countries: Array<{ __typename?: 'Country', code: string, emoji: string, id: number, name: string, continent?: { __typename?: 'Continent', id: number, name: string } | null }> };
 
+export type OneCountryQueryVariables = Exact<{
+  code: Scalars['String']['input'];
+}>;
+
+
+export type OneCountryQuery = { __typename?: 'Query', country: { __typename?: 'Country', emoji: string, id: number, name: string, code: string, continent?: { __typename?: 'Continent', name: string, id: number } | null } };
+
 
 export const CountriesDocument = gql`
     query Countries {
@@ -127,3 +134,50 @@ export type CountriesQueryHookResult = ReturnType<typeof useCountriesQuery>;
 export type CountriesLazyQueryHookResult = ReturnType<typeof useCountriesLazyQuery>;
 export type CountriesSuspenseQueryHookResult = ReturnType<typeof useCountriesSuspenseQuery>;
 export type CountriesQueryResult = Apollo.QueryResult<CountriesQuery, CountriesQueryVariables>;
+export const OneCountryDocument = gql`
+    query OneCountry($code: String!) {
+  country(code: $code) {
+    continent {
+      name
+      id
+    }
+    emoji
+    id
+    name
+    code
+  }
+}
+    `;
+
+/**
+ * __useOneCountryQuery__
+ *
+ * To run a query within a React component, call `useOneCountryQuery` and pass it any options that fit your needs.
+ * When your component renders, `useOneCountryQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useOneCountryQuery({
+ *   variables: {
+ *      code: // value for 'code'
+ *   },
+ * });
+ */
+export function useOneCountryQuery(baseOptions: Apollo.QueryHookOptions<OneCountryQuery, OneCountryQueryVariables> & ({ variables: OneCountryQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<OneCountryQuery, OneCountryQueryVariables>(OneCountryDocument, options);
+      }
+export function useOneCountryLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<OneCountryQuery, OneCountryQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<OneCountryQuery, OneCountryQueryVariables>(OneCountryDocument, options);
+        }
+export function useOneCountrySuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<OneCountryQuery, OneCountryQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<OneCountryQuery, OneCountryQueryVariables>(OneCountryDocument, options);
+        }
+export type OneCountryQueryHookResult = ReturnType<typeof useOneCountryQuery>;
+export type OneCountryLazyQueryHookResult = ReturnType<typeof useOneCountryLazyQuery>;
+export type OneCountrySuspenseQueryHookResult = ReturnType<typeof useOneCountrySuspenseQuery>;
+export type OneCountryQueryResult = Apollo.QueryResult<OneCountryQuery, OneCountryQueryVariables>;
