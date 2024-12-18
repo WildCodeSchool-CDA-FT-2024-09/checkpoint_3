@@ -1,4 +1,8 @@
 import { useState } from "react";
+import {
+  NewCountryInput,
+  useAddCountryMutation,
+} from "../generated/graphql-types";
 
 const initialValue = {
   name: "",
@@ -6,14 +10,15 @@ const initialValue = {
   emoji: "",
 };
 
-type Country = {
-  name: string;
-  code: string;
-  emoji: string;
+type Props = {
+  refetch: () => void;
 };
 
-function AddCountryForm() {
+type Country = Omit<NewCountryInput, "continent">;
+
+function AddCountryForm({ refetch }: Props) {
   const [country, setCountry] = useState<Country>(initialValue);
+  const [addCountryMutation] = useAddCountryMutation();
 
   const handleCountry = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCountry((prev) => ({
@@ -22,10 +27,18 @@ function AddCountryForm() {
     }));
   };
 
-  const addCountry = (event: React.FormEvent<HTMLFormElement>) => {
+  const addCountry = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    console.info(country);
+    try {
+      await addCountryMutation({
+        variables: {
+          addCountryData: country,
+        },
+      });
+      refetch();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

@@ -4,14 +4,15 @@ import { useCountriesQuery } from "./generated/graphql-types";
 import AddCountryForm from "./components/AddCountryForm";
 
 function App() {
-  const { loading, error, data } = useCountriesQuery();
+  const { loading, error, data, refetch } = useCountriesQuery();
+  const [coutries, setCountries] = useState(data);
 
   if (error) return <p>There id an Error</p>;
   if (loading) return <p>Loading...</p>;
 
   return (
     <main className="container">
-      <AddCountryForm />
+      <AddCountryForm refetch={refetch} />
       <section className="row">
         {data?.countries.map((country) => (
           <article className="col-lg-2 col-sm-4 my-2">
