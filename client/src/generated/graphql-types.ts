@@ -80,12 +80,12 @@ export type AddCountryMutationVariables = Exact<{
 }>;
 
 
-export type AddCountryMutation = { __typename?: 'Mutation', addCountry: { __typename?: 'Country', id: number } };
+export type AddCountryMutation = { __typename?: 'Mutation', addCountry: { __typename?: 'Country', id: number, code: string, emoji: string, name: string } };
 
 export type CountriesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CountriesQuery = { __typename?: 'Query', countries: Array<{ __typename?: 'Country', code: string, emoji: string, id: number, name: string, continent?: { __typename?: 'Continent', id: number, name: string } | null }> };
+export type CountriesQuery = { __typename?: 'Query', countries: Array<{ __typename?: 'Country', code: string, emoji: string, id: number, name: string }> };
 
 export type OneCountryQueryVariables = Exact<{
   code: Scalars['String']['input'];
@@ -99,6 +99,9 @@ export const AddCountryDocument = gql`
     mutation AddCountry($addCountryData: NewCountryInput!) {
   addCountry(data: $addCountryData) {
     id
+    code
+    emoji
+    name
   }
 }
     `;
@@ -132,10 +135,6 @@ export const CountriesDocument = gql`
     query Countries {
   countries {
     code
-    continent {
-      id
-      name
-    }
     emoji
     id
     name

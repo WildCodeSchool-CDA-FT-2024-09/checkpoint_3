@@ -4,10 +4,6 @@ const GET_COUTNRY = gql`
   query Countries {
     countries {
       code
-      continent {
-        id
-        name
-      }
       emoji
       id
       name

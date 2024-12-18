@@ -1,20 +1,39 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./App.css";
 import { useCountriesQuery } from "./generated/graphql-types";
 import AddCountryForm from "./components/AddCountryForm";
 
+type Country = {
+  id: number;
+  name: string;
+  code: string;
+  emoji: string;
+};
+
 function App() {
-  const { loading, error, data, refetch } = useCountriesQuery();
-  const [coutries, setCountries] = useState(data);
+  const { loading, error, data } = useCountriesQuery();
+  const [countries, setCountries] = useState<Country[] | undefined>([]);
+
+  useEffect(() => {
+    setCountries(data?.countries);
+  }, [data]);
+
+  const handleCountryState = (result: Country) => {
+    console.log(result);
+    setCountries((prev) => (prev ? [...prev, result] : [result]));
+  };
 
   if (error) return <p>There id an Error</p>;
   if (loading) return <p>Loading...</p>;
 
+  console.log(countries);
+
   return (
     <main className="container">
-      <AddCountryForm refetch={refetch} />
+      <AddCountryForm handleCountryState={handleCountryState} />
       <section className="row">
-        {data?.countries.map((country) => (
+        {countries?.map((country) => (
           <article className="col-lg-2 col-sm-4 my-2">
             <Link
               className="border text-center"
