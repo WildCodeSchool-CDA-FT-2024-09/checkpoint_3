@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { GET_COUNTRIES } from "../schema/schema";
 import {
   useContinentsQuery,
   useAddCountryMutation,
-  // useCountriesQuery,
+  CountriesDocument,
 } from "../types/graphql-types";
 import List from "../components/CountriesList";
 import {
@@ -22,7 +21,6 @@ function Home() {
 
   const { data: continents } = useContinentsQuery();
   const [addCountry] = useAddCountryMutation();
-  // const [refetchCountries] = useCountriesQuery();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -43,11 +41,7 @@ function Home() {
           continent: { id: parseInt(continent) },
         },
       },
-      refetchQueries: [{ query: GET_COUNTRIES }],
-      // refetchQueries: [{ query: refetchCountries }],
-      onCompleted: () => {
-        //useCountriesQuery().refetch();
-      },
+      refetchQueries: [{ query: CountriesDocument }],
     });
 
     setFormData({ name: "", emoji: "", code: "" });
