@@ -15,5 +15,19 @@ const GET_COUTNRY = gql`
   }
 `;
 
+const GET_ONE_COUNTRY = gql`
+  query OneCountry($code: String!) {
+    country(code: $code) {
+      continent {
+        name
+        id
+      }
+      emoji
+      id
+      name
+      code
+    }
+  }
+`;
 
-export { GET_COUTNRY}
+export { GET_COUTNRY, GET_ONE_COUNTRY };
